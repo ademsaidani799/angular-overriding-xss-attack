@@ -8,9 +8,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AppComponent {
   searchKey: any;
+  constructor(private domSanitizer:DomSanitizer){}
 
 
   search(searchTxt: any) {
-    this.searchKey = searchTxt.value
+    // this.searchKey = searchTxt.value
+    this.searchKey = this.domSanitizer.bypassSecurityTrustHtml(searchTxt);
   }
 }
+
